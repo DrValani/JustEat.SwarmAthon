@@ -1,0 +1,233 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>Feature Overview</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" href="blue/css/style.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="blue/css/skin/style.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="blue/css/960.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="blue/css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="blue/css/text.css" type="text/css" media="screen" />
+
+<link rel="stylesheet" href="reporting.css" type="text/css" media="screen" />
+
+<link rel="shortcut icon" href="blue/favicon.ico" />
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.tablesorter.min.js"></script>
+<script type="text/javascript" >
+    $(document).ready(function() {
+        $("#tablesorter").tablesorter();
+    });
+</script>
+<script src="js/highcharts.js"></script>
+<script src="js/highcharts-3d.js"></script>
+
+</head>
+<body id="top">
+
+    <div class="heading container_12">
+        <h2><span id="overview-title">Feature Overview for build: 1</span>
+                </h2>
+        <span class="subhead">The following graph shows passing and failing statistics for features in this build.</span>
+    </div>
+
+    <div class="container_12">
+        <div class="grid_12">
+        <script>
+		$(function () {
+		    $('#steps_chart').highcharts({
+		        chart: {
+		            type: 'pie',
+		            options3d: {
+		                enabled: true,
+		                alpha: 45,
+		                beta: 0
+		            }
+		        },
+		        title: {
+		            text: 'Steps'
+		        },
+		        plotOptions: {
+		            pie: {
+		                allowPointSelect: true,
+		                cursor: 'pointer',
+		                depth: 35,
+		                dataLabels: {
+		                    enabled: true,
+		                    format: '<b>{point.name}</b>: {point.percentage:.2f} %'
+		                }
+		            }
+		        },
+		        series: [{
+		            type: 'pie',
+		            name: 'Steps',
+		            data: [
+		                {
+                            selected: true,
+ 		                    sliced: true,
+ 		                    name: 'Passed',
+		                    color: "#00A000",
+		                    y: 5
+		                },
+		                {
+		                    name: 'Failed',
+		                    color: "#FF0000",
+		                    y: 0
+		                },
+		                {
+		                    name: 'Skipped',
+		                    color: "#88AAFF",
+		                    y: 0
+		                },
+		                {
+		                    name: 'Pending',
+		                    color: "#FBB907",
+		                    y: 0
+		                },
+		                {
+		                    name: 'Undefined',
+		                    color: "#FBB957",
+		                    y: 0
+		                },
+		                {
+		                    name: 'Missing',
+		                    color: "#FBB9A7",
+		                    y: 0
+		                }
+		            ]
+		        }]
+		    });
+
+                $('#scenarios_chart').highcharts({
+			        chart: {
+			            type: 'pie',
+			            options3d: {
+			                enabled: true,
+			                alpha: 45
+			            }
+			        },
+                    title: {
+                        text: 'Scenarios'
+                    },
+			        plotOptions: {
+			            pie: {
+			                innerSize: 150,
+			                depth: 35,
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: true,
+		                        format: '<b>{point.name}</b>: {point.percentage:.2f} %'
+                            }
+			            }
+			        },
+                    series: [{
+                        name: 'Scenarios',
+                        data: [
+                            {
+                                name: 'Passed',
+                                y: 1,
+                                color: "#00A000"
+                            },
+                            {
+
+                                selected: true,
+ 	                            sliced: true,
+                                name: 'Failed',
+                                y: 0,
+                                color: "#FF0000"
+                            }
+                        ]
+                    }]
+                });
+            });
+        </script>
+        </div>
+        <div style="text-align:center;">
+            <table id="js-charts">
+                <tr>
+                    <td><div style="width:480px;height:350px" id="steps_chart"></div></td>
+                    <td><div style="width:480px;height:350px" id="scenarios_chart"></div></td>
+                </tr>
+            </table>
+        </div>
+
+    <div>
+    <h2 id="feature-statistics-title">Feature Statistics</h2>
+    <table id="tablesorter" class="stats-table">
+                <thead>
+    <tr>
+                <th></th>
+        <th id="stats-header-scenarios" colspan="3">Scenarios</th>
+        <th id="stats-header-steps" colspan="7">Steps</th>
+        <th></th>
+        <th></th>
+    </tr>
+    <tr>
+            <th id="stats-header-key">Feature</th>
+                        <th id="stats-header-scenarios-total">Total</th>
+            <th id="stats-header-scenarios-passed">Passed</th>
+            <th id="stats-header-scenarios-failed">Failed</th>
+            <th id="stats-header-steps-total">Total</th>
+            <th id="stats-header-steps-passed"    style="background-color:#00A000">Passed</th>
+            <th id="stats-header-steps-failed"    style="background-color:#FF0000">Failed</th>
+            <th id="stats-header-steps-skipped"   style="background-color:#88AAFF">Skipped</th>
+            <th id="stats-header-steps-pending"   style="background-color:#FBB907">Pending</th>
+            <th id="stats-header-steps-undefined" style="background-color:#FBB957">Undefined</th>
+            <th id="stats-header-steps-missing"   style="background-color:#FBB9A7">Missing</th>
+            <th id="stats-header-duration">Duration</th>
+            <th id="stats-header-status">Status</th>
+    </tr>
+</thead>
+
+        <tbody>
+
+
+            <tr>
+                <td style="text-align:left;"><a id="stats-Log in to Lobby" href="D--Unity-Automation-QA-AutomationQA-QA-cucumber-features-lobby_login-feature.html">Log in to Lobby</a></td>
+                                <td id="stats-number-scenarios-Log in to Lobby">1</td>
+                <td id="stats-number-scenarios-passed-Log in to Lobby">1</td>
+                <td id="stats-number-scenarios-failed-Log in to Lobby">0</td>
+                <td id="stats-number-steps-Log in to Lobby">5</td>
+                <td id="stats-number-steps-passed-Log in to Lobby">5</td>
+                <td id="stats-number-steps-failed-Log in to Lobby"    >0</td>
+                <td id="stats-number-steps-skipped-Log in to Lobby"   >0</td>
+                <td id="stats-number-steps-pending-Log in to Lobby"   >0</td>
+                <td id="stats-number-steps-undefined-Log in to Lobby" >0</td>
+                <td id="stats-number-steps-missing-Log in to Lobby"   >0</td>
+                <td id="stats-duration-Log in to Lobby" style="text-align:right;white-space:nowrap">06s 869ms</td>
+                <td id="stats-status-Log in to Lobby" style="background-color: #00A000;">passed</td>
+            </tr>
+                </tbody>
+        <tr>
+            <th id="stats-total-features" style="background-color:lightgray">1</th>
+                        <th id="stats-total-scenarios" style="background-color:lightgray">1</th>
+            <th id="stats-total-scenarios-passed" style="background-color:lightgray">1</th>
+            <th id="stats-total-scenarios-failed" style="background-color:lightgray">0</th>
+            <th id="stats-total-steps" style="background-color:lightgray">5</th>
+            <th id="stats-total-steps-passed" style="background-color:lightgray">5</th>
+            <th id="stats-total-steps-failed" style="background-color:lightgray">0</th>
+            <th id="stats-total-steps-skipped" style="background-color:lightgray">0</th>
+            <th id="stats-total-steps-pending" style="background-color:lightgray">0</th>
+            <th id="stats-total-steps-undefined" style="background-color:lightgray">0</th>
+            <th id="stats-total-steps-missing" style="background-color:lightgray">0</th>
+            <th id="stats-total-duration" style="background-color:lightgray;text-align:right;white-space:nowrap">06s 869ms</th>
+            <th id="stats-total-totals" style="background-color:lightgray">Totals</th>
+        </tr>
+    </table>
+    </div>
+
+    </div>
+
+<div class="container_12">
+    <div class="grid_12 hr"></div>
+    <div class="grid_12">
+        <p style="text-align:center">
+            <br>Build time: 02-08-2016 12:38:24</p>
+    </div>
+</div>
+
+</body>
+</html>

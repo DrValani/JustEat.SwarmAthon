@@ -1,0 +1,28 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<SwarmAthonApi.Views.Models.Overview>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>SwarmAthonApi</title>
+    <link rel="stylesheet" href="Content/Style.css">
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>Result</th>
+                <th>Count </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ResultCounter)
+            {
+                    <tr>
+                        <td>@item.Key</td>
+                        <td>@item.Value</td>
+                    </tr>                
+            }
+        </tbody>
+    </table>
+</body>
+</html>
